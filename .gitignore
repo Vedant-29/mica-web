@@ -1,3 +1,8 @@
 .DS_Store
 node_modules/
-downloads/*.dmg
+.svelte-kit/
+.wrangler/
+build/
+# Raw capture masters — huge, and the web-sized renders in static/media are derived
+# from them. Kept locally so the crops can be redone without re-shooting.
+assets/raw/
