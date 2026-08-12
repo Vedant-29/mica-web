@@ -81,6 +81,33 @@
 						anywhere.
 					</p>
 					<p>Nothing is closed and nothing is lost — an app you'd already hidden stays hidden.</p>
+
+					<ul class="flist">
+						<li>
+							<span class="k">Do Not Disturb</span><span class="v">Silences notifications.</span>
+						</li>
+						<li>
+							<span class="k">Hide Active Windows</span><span class="v"
+								>All, all but the front, or a list you pick.</span
+							>
+						</li>
+						<li><span class="k">Hide Dock</span><span class="v">Slides it out of sight.</span></li>
+						<li>
+							<span class="k">Hide Menu Bar Icons</span><span class="v"
+								>Everything left of Mica's marker.</span
+							>
+						</li>
+						<li>
+							<span class="k">Hide Wallpaper</span><span class="v"
+								>Blurs it past recognition, keeping the colour.</span
+							>
+						</li>
+						<li>
+							<span class="k">Hide Desktop Icons</span><span class="v"
+								>Clears the desktop; the wallpaper stays.</span
+							>
+						</li>
+					</ul>
 				</div>
 				<Shot
 					src="/media/panel.png"
@@ -91,31 +118,6 @@
 					caption="The whole app is one panel."
 				/>
 			</div>
-
-			<ul class="flist">
-				<li><span class="k">Do Not Disturb</span><span class="v">Silences notifications.</span></li>
-				<li>
-					<span class="k">Hide Active Windows</span><span class="v"
-						>All, all but the front, or a list you pick.</span
-					>
-				</li>
-				<li><span class="k">Hide Dock</span><span class="v">Slides it out of sight.</span></li>
-				<li>
-					<span class="k">Hide Menu Bar Icons</span><span class="v"
-						>Everything left of Mica's marker.</span
-					>
-				</li>
-				<li>
-					<span class="k">Hide Wallpaper</span><span class="v"
-						>Blurs it past recognition, keeping the colour.</span
-					>
-				</li>
-				<li>
-					<span class="k">Hide Desktop Icons</span><span class="v"
-						>Clears the desktop; the wallpaper stays.</span
-					>
-				</li>
-			</ul>
 		</section>
 
 		<section class="sec" id="windows">

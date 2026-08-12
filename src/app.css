@@ -280,6 +280,27 @@ h2 {
 .flist .v {
 	color: var(--muted);
 }
+/* Inside a split column there is roughly half the width, so the key column narrows and
+   the rows tighten — the list is part of the paragraph's column here, not a table
+   standing on its own. */
+.split .flist {
+	margin-top: 22px;
+}
+.split .flist li {
+	padding: 9px 0;
+	gap: 10px;
+}
+.split .flist .k {
+	/* Wide enough for the longest label so the keys never wrap — some breaking onto a
+	   second line and others not made the column look ragged rather than tabular. */
+	min-width: 152px;
+	white-space: nowrap;
+}
+@media (max-width: 820px) {
+	.split .flist .k {
+		min-width: 0;
+	}
+}
 @media (max-width: 520px) {
 	.flist li {
 		flex-direction: column;
