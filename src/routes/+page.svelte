@@ -31,6 +31,7 @@
 			<a href="#switches">switches</a>
 			<a href="#windows">windows</a>
 			<a href="#triggers">triggers</a>
+			<a href="/faq">faq</a>
 			<a href="#get">download</a>
 		</nav>
 	</header>
@@ -188,8 +189,10 @@
 		</section>
 
 		<p class="foot">
-			Not affiliated with Apple · MIT licensed ·
-			<a href={REPO} target="_blank" rel="noopener">github.com/Vedant-29/mica</a>
+			<a href="/faq">FAQ</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> ·
+			<a href={REPO} target="_blank" rel="noopener">Source</a>
+			<br />
+			Not affiliated with Apple · MIT licensed
 		</p>
 	</div>
 </main>
