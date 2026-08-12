@@ -21,7 +21,7 @@
 	<meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
 
-<div class="col">
+<div class="col-wide">
 	<header class="top">
 		<a href="#top" aria-label="Mica"><span class="mark"><Mark /></span></a>
 		<nav class="topnav">
@@ -34,8 +34,8 @@
 </div>
 
 <main id="top">
-	<div class="col">
-		<section class="hero">
+	<div class="col-wide">
+		<section class="hero measure">
 			<h1>Hide your desktop<br />before anyone else sees it.</h1>
 			<p>
 				Mica clears the screen in one keystroke — windows, Dock, menu bar icons, wallpaper,
@@ -49,9 +49,7 @@
 			</div>
 			<p class="req">Free &amp; open source · macOS 15+ · Apple Silicon &amp; Intel</p>
 		</section>
-	</div>
 
-	<div class="col-wide">
 		<figure class="media">
 			<div class="bar"><i></i><i></i><i></i></div>
 			<!-- svelte-ignore a11y_media_has_caption -->
@@ -68,20 +66,32 @@
 			></video>
 			<figcaption>One switch at a time — Dock, menu bar, wallpaper, desktop icons.</figcaption>
 		</figure>
-	</div>
 
-	<div class="col">
 		<div class="rule"></div>
 
 		<section class="sec" id="switches">
-			<div class="num">01</div>
-			<h2>Six switches, one keystroke</h2>
-			<p>
-				Everything lives in one menu bar panel. <span class="hl">On</span> hides now.
-				<span class="hl">Auto</span> hides only while your screen is being watched.
-				<span class="hl">Off</span> stands down. <span class="hl">⌥⌘S</span> flips it from anywhere.
-			</p>
-			<p>Nothing is closed and nothing is lost — an app you'd already hidden stays hidden.</p>
+			<div class="split">
+				<div class="txt">
+					<div class="num">01</div>
+					<h2>Six switches, one keystroke</h2>
+					<p>
+						Everything lives in one menu bar panel. <span class="hl">On</span> hides now.
+						<span class="hl">Auto</span> hides only while your screen is being watched.
+						<span class="hl">Off</span> stands down. <span class="hl">⌥⌘S</span> flips it from
+						anywhere.
+					</p>
+					<p>Nothing is closed and nothing is lost — an app you'd already hidden stays hidden.</p>
+				</div>
+				<Shot
+					src="/media/panel.png"
+					width={625}
+					height={761}
+					max={330}
+					alt="Mica's menu bar panel, set to On, with all six switches enabled."
+					caption="The whole app is one panel."
+				/>
+			</div>
+
 			<ul class="flist">
 				<li><span class="k">Do Not Disturb</span><span class="v">Silences notifications.</span></li>
 				<li>
@@ -106,59 +116,62 @@
 					>
 				</li>
 			</ul>
-			<Shot
-				src="/media/panel.png"
-				width={700}
-				height={830}
-				alt="Mica's menu bar panel, set to On, with all six switches enabled."
-				caption="The whole app is one panel."
-			/>
 		</section>
 
 		<section class="sec" id="windows">
-			<div class="num">02</div>
-			<h2>Everything, or only what you choose</h2>
-			<p>
-				Hiding every window is usually too much — you still need the thing you're presenting. So
-				choose the scope: <span class="hl">all windows</span>,
-				<span class="hl">all except the frontmost</span>, or name the apps yourself and hide
-				<span class="hl">only those</span> — or everything <span class="hl">but</span> those.
-			</p>
-			<p>The messages keep arriving. Nobody watching sees them.</p>
-			<Shot
-				src="/media/windows.png"
-				width={1280}
-				height={1180}
-				alt="Mica's Windows settings: four hiding scopes, with Claude, Messages and WhatsApp picked."
-				caption="Settings › Windows — the apps you'd rather not explain."
-			/>
+			<div class="split rev">
+				<div class="txt">
+					<div class="num">02</div>
+					<h2>Everything, or only what you choose</h2>
+					<p>
+						Hiding every window is usually too much — you still need the thing you're presenting.
+						So choose the scope: <span class="hl">all windows</span>,
+						<span class="hl">all except the frontmost</span>, or name the apps yourself and hide
+						<span class="hl">only those</span> — or everything <span class="hl">but</span> those.
+					</p>
+					<p>The messages keep arriving. Nobody watching sees them.</p>
+				</div>
+				<Shot
+					src="/media/windows.png"
+					width={1280}
+					height={1180}
+					max={460}
+					alt="Mica's Windows settings: four hiding scopes, with Claude, Messages and WhatsApp picked."
+					caption="Settings › Windows — the apps you'd rather not explain."
+				/>
+			</div>
 		</section>
 
 		<section class="sec" id="triggers">
-			<div class="num">03</div>
-			<h2>It can turn itself on</h2>
-			<p>
-				In <span class="hl">Auto</span>, Mica watches for the moments that mean someone else is
-				about to see your screen — a share or recording starting in Zoom, Meet, Teams, QuickTime,
-				OBS or <span class="hl">⌘⇧5</span>, and a display being mirrored or extended.
-			</p>
-			<p>
-				You can add apps of your own, each set to turn Mica on or just remind you. And exclusions —
-				apps that hold it off no matter what else is happening, so it never fires while you're
-				doing the one thing you actually wanted on screen.
-			</p>
-			<Shot
-				src="/media/triggers.png"
-				width={1280}
-				height={1180}
-				alt="Mica's Triggers settings: trigger apps that switch it on, and excluded apps that hold it off."
-				caption="Settings › Triggers — turn on for these, never for those."
-			/>
+			<div class="split">
+				<div class="txt">
+					<div class="num">03</div>
+					<h2>It can turn itself on</h2>
+					<p>
+						In <span class="hl">Auto</span>, Mica watches for the moments that mean someone else is
+						about to see your screen — a share or recording starting in Zoom, Meet, Teams,
+						QuickTime, OBS or <span class="hl">⌘⇧5</span>, and a display being mirrored or
+						extended.
+					</p>
+					<p>
+						You can add apps of your own, each set to turn Mica on or just remind you. And
+						exclusions — apps that hold it off no matter what else is happening.
+					</p>
+				</div>
+				<Shot
+					src="/media/triggers.png"
+					width={1280}
+					height={1180}
+					max={460}
+					alt="Mica's Triggers settings: trigger apps that switch it on, and excluded apps that hold it off."
+					caption="Settings › Triggers — turn on for these, never for those."
+				/>
+			</div>
 		</section>
 
 		<div class="rule"></div>
 
-		<section class="sec" id="get">
+		<section class="sec measure" id="get">
 			<div class="num">04</div>
 			<h2>Get Mica</h2>
 			<p>Free, open source, and yours to keep. No account, no subscription, no tracking.</p>
