@@ -13,6 +13,11 @@ on:
     branches: [main]
   workflow_dispatch: {}
 
+# The bundled JS actions still target Node 20, which is being removed from the
+# runners; opt them into Node 24 now rather than waiting for the break.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
