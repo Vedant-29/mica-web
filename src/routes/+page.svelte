@@ -4,6 +4,9 @@
 
 	const SITE = 'https://mica.vedantagrw.com';
 	const REPO = 'https://github.com/Vedant-29/mica';
+	// GitHub resolves this to the newest non-prerelease asset, so cutting a release
+	// updates the download without redeploying this site or hard-coding a version.
+	const DMG = `${REPO}/releases/latest/download/Mica.dmg`;
 	const TITLE = 'Mica — hide your desktop before anyone else sees it';
 	const DESC =
 		'A free, open-source macOS app that clears your screen — windows, Dock, menu bar, wallpaper, desktop icons and notifications — in one keystroke, or by itself the moment you share.';
@@ -178,7 +181,7 @@
 			<h2>Get Mica</h2>
 			<p>Free, open source, and yours to keep. No account, no subscription, no tracking.</p>
 			<div class="btns">
-				<a class="btn solid" href="/Mica.dmg" download>Download .dmg</a>
+				<a class="btn solid" href={DMG}>Download .dmg</a>
 				<a class="btn" href={REPO} target="_blank" rel="noopener">Build from source</a>
 			</div>
 			<p class="req">first launch: right-click → Open</p>

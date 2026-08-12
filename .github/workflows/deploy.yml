@@ -1,0 +1,36 @@
+name: Deploy to Cloudflare Pages
+
+# Build and publish to the existing `mica` Pages project on every push to main.
+# The project already owns mica.vedantagrw.com, so this only uploads new static
+# output — no domain reconfiguration.
+#
+# This file is public and that is fine. The Cloudflare token lives in repository
+# secrets: encrypted at rest, masked in logs, and never handed to workflows
+# triggered from forks. A public workflow referencing ${{ secrets.X }} discloses
+# the name of a secret, not its value.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy .svelte-kit/cloudflare --project-name mica --branch main
