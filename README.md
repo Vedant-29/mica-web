@@ -1,43 +1,80 @@
 # Mica — website
 
-The landing page for [Mica](https://github.com/Vedant-29/mica), the macOS screen-privacy app.
+The landing page for [Mica](https://github.com/Vedant-29/mica), the macOS screen-privacy
+app.
 
-Single self-contained `index.html` — no build step, no dependencies. Open it in a browser,
-or serve the folder:
+**Live at [mica.vedantagrw.com](https://mica.vedantagrw.com)**
+
+SvelteKit 2 / Svelte 5, deployed to Cloudflare Pages. Every route prerenders, so what ships
+is plain static files — nothing runs at request time.
+
+## Running it
 
 ```sh
-python3 -m http.server 8000     # then open http://localhost:8000
+npm install
+npm run dev        # http://localhost:5173
+npm run build      # output in .svelte-kit/cloudflare
+npm run preview
 ```
 
-## Adding videos
+## Layout
 
-Every product visual is a **slot** with a `data-video` path. Drop a matching file into
-`videos/` and it appears automatically (autoplay, muted, looped); until then a colorful
-placeholder shows the expected filename.
+```
+src/routes/+page.svelte          The whole page — one route
+src/lib/components/Shot.svelte   A screenshot, sized per image
+src/app.css                      All styling; design tokens at the top
+static/media/                    Web-sized video and screenshots
+assets/raw/                      Capture masters (gitignored — large)
+```
 
-| Slot | File | Suggested clip |
-|---|---|---|
-| Hero | `videos/hero.mp4` | Full engage: share a screen, watch everything hide, then reveal |
-| Card 1 | `videos/screen-share.mp4` | A Zoom/Meet share auto-triggering Mica |
-| Card 2 | `videos/windows.mp4` | Windows hiding and coming back |
-| Card 3 | `videos/desktop.mp4` | Desktop icons clearing, wallpaper staying |
-| Card 4 | `videos/dnd.mp4` | The Do Not Disturb moon appearing |
+## Media
 
-Keep them short (5–10s), muted, and ideally `.mp4` (H.264) for the widest support. Screen
-recordings from ⌘⇧5 work well.
+`static/media/` is committed and web-sized. The originals it came from are not — the source
+screen recording is 95 MB, so `assets/raw/` is gitignored and kept locally.
 
-## The download
+The video is re-encoded down to roughly 284 KB:
 
-Put the built DMG at `downloads/Mica.dmg` (gitignored by default — host it via a release
-instead of committing a binary). The Download button points there.
+```sh
+ffmpeg -i raw.mp4 -an -vf "scale=1600:-2,fps=30" \
+  -c:v libx264 -preset slow -crf 30 -pix_fmt yuv420p -movflags +faststart \
+  static/media/reveal.mp4
+```
+
+Audio is dropped, frame rate halved, and `+faststart` moves the index to the front so it
+begins playing before the file finishes downloading. A VP9/WebM encode was tried and came
+out *larger* than the H.264, so it isn't shipped.
+
+Screenshots are cropped from full-screen captures and displayed at roughly the size the
+interface really is — a menu bar panel stretched across a wide column reads as an
+enlargement rather than a screenshot.
 
 ## Deploying
 
-It's static, so anything works — GitHub Pages, Netlify, Vercel, Cloudflare Pages. For
-GitHub Pages: push, then enable Pages on the `main` branch root.
+Pushing to `main` builds and publishes automatically. There's no manual step.
 
-## Design
+To publish by hand — useful for checking a build before pushing:
 
-Clean and minimal, with color used deliberately (amber / violet / green / sky accents per
-feature) rather than a single flat theme. Light and dark both handled. No frameworks — one
-HTML file, inline CSS, a few lines of JS to inline the logo and swap in videos.
+```sh
+npm run deploy
+```
+
+This needs `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` as repository secrets. They
+are already configured; values are not in this repo.
+
+## The download button
+
+It points at a URL that GitHub resolves to the newest published release:
+
+```
+https://github.com/Vedant-29/mica/releases/latest/download/Mica.dmg
+```
+
+**Cutting a release in the app repo is all that is needed to update the download here.**
+This site isn't rebuilt or redeployed, and no version number is written into it.
+
+Don't commit a `.dmg` to this repo. One used to live in `static/`, which meant the download
+served whatever binary had last been copied in by hand, traceable to no particular build.
+
+## License
+
+MIT — see [LICENSE](../mica/LICENSE) in the app repo.

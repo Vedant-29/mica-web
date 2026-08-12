@@ -63,7 +63,12 @@ Pushing to `main` publishes, via `.github/workflows/deploy.yml`. It needs two
 repository secrets:
 
     CLOUDFLARE_API_TOKEN     Pages Write + DNS Write + Zone Read
-    CLOUDFLARE_ACCOUNT_ID    <redacted-account-id>
+    CLOUDFLARE_ACCOUNT_ID    the account the Pages project lives under
+
+Values are deliberately not written here — this file is public. Both are already
+set on the repository; read them from the Cloudflare dashboard if they ever need
+replacing. The same token also deploys the portfolio, so rolling it means updating
+the secret in both repositories.
 
 To publish by hand instead — useful when checking a build before it is pushed:
 
