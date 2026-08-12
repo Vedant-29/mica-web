@@ -1,5 +1,6 @@
 <script>
 	import Mark from '$lib/components/Mark.svelte';
+	import Icon from '$lib/components/Icon.svelte';
 
 	// Shell for the standalone pages — FAQ, privacy, terms. Same header, measure and
 	// footer as the landing page so they read as part of the same site rather than
@@ -30,7 +31,9 @@
 
 		<p class="foot">
 			<a href="/">← Mica</a> · Not affiliated with Apple · MIT licensed ·
-			<a href={REPO} target="_blank" rel="noopener">source</a>
+			<a class="ghlink" href={REPO} target="_blank" rel="noopener"
+				><Icon name="github" size={12} /> GitHub</a
+			>
 		</p>
 	</main>
 </div>

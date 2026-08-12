@@ -1,6 +1,7 @@
 <script>
 	import Mark from '$lib/components/Mark.svelte';
 	import Shot from '$lib/components/Shot.svelte';
+	import Icon from '$lib/components/Icon.svelte';
 
 	const SITE = 'https://mica.vedantagrw.com';
 	const REPO = 'https://github.com/Vedant-29/mica';
@@ -48,8 +49,10 @@
 			<p class="ink">When you're done, everything comes back exactly as it was.</p>
 
 			<div class="btns">
-				<a class="btn solid" href="#get">Download</a>
-				<a class="btn" href={REPO} target="_blank" rel="noopener">View source</a>
+				<a class="btn solid" href="#get"><Icon name="download" /> Download for macOS</a>
+				<a class="btn" href={REPO} target="_blank" rel="noopener">
+					<Icon name="github" /> View on GitHub
+				</a>
 			</div>
 			<p class="req">Free &amp; open source · macOS 15+ · Apple Silicon &amp; Intel</p>
 		</section>
@@ -182,15 +185,19 @@
 			<h2>Get Mica</h2>
 			<p>Free, open source, and yours to keep. No account, no subscription, no tracking.</p>
 			<div class="btns">
-				<a class="btn solid" href={DMG}>Download .dmg</a>
-				<a class="btn" href={REPO} target="_blank" rel="noopener">Build from source</a>
+				<a class="btn solid" href={DMG}><Icon name="download" /> Download .dmg</a>
+				<a class="btn" href={REPO} target="_blank" rel="noopener">
+					<Icon name="github" /> View on GitHub
+				</a>
 			</div>
 			<p class="req">first launch: right-click → Open</p>
 		</section>
 
 		<p class="foot">
 			<a href="/faq">FAQ</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> ·
-			<a href={REPO} target="_blank" rel="noopener">Source</a>
+			<a class="ghlink" href={REPO} target="_blank" rel="noopener"
+				><Icon name="github" size={12} /> GitHub</a
+			>
 			<br />
 			Not affiliated with Apple · MIT licensed
 		</p>

@@ -429,3 +429,19 @@ h2 {
 		padding: 44px 0 0;
 	}
 }
+
+/* Icons sit inside buttons and links, so they need to align with the text baseline
+   rather than the box, and inherit its colour. */
+.btn {
+	gap: 7px;
+}
+.btn svg,
+.ghlink svg {
+	flex: none;
+	display: block;
+}
+.ghlink {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+}
