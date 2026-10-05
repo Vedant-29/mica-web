@@ -6,7 +6,9 @@ The landing page for [Mica](https://github.com/Vedant-29/mica), a macOS menu bar
 
 Related: [mica](https://github.com/Vedant-29/mica) (the macOS app this page describes and links to)
 
-[![Mica hiding the desktop, the demo video on the home page](static/media/reveal-poster.jpg)](static/media/reveal.mp4)
+![Demo: Mica hiding the desktop, the clip shown on the home page](docs/demo.gif)
+
+The full clip is in [static/media/reveal.mp4](static/media/reveal.mp4).
 
 Click the image to watch the demo video shown on the home page.
 
