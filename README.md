@@ -1,38 +1,45 @@
-# Mica — website
+# mica-web
 
-The landing page for [Mica](https://github.com/Vedant-29/mica), the macOS screen-privacy
-app.
+The landing page for [Mica](https://github.com/Vedant-29/mica), a macOS menu bar app that hides your desktop before anyone else sees it. Includes the home page, FAQ, privacy policy, and terms.
 
-**Live at [mica.vedantagrw.com](https://mica.vedantagrw.com)**
+[Live site](https://mica.vedantagrw.com) · [Download Mica](https://github.com/Vedant-29/mica/releases/latest/download/Mica.dmg)
 
-SvelteKit 2 / Svelte 5, deployed to Cloudflare Pages. Every route prerenders, so what ships
-is plain static files — nothing runs at request time.
+![Mica menu bar panel](static/media/panel.png)
 
-## Running it
+Built with SvelteKit 2 and Svelte 5. Every route is prerendered, so the deployed site is plain static files.
+
+## Requirements
+
+- Node 22 (the version CI uses)
+
+## Setup
 
 ```sh
+git clone https://github.com/Vedant-29/mica-web.git
+cd mica-web
 npm install
-npm run dev        # http://localhost:5173
-npm run build      # output in .svelte-kit/cloudflare
-npm run preview
+npm run dev
 ```
 
-## Layout
+Open http://localhost:5173. `npm run build` writes the site to `.svelte-kit/cloudflare`, and `npm run preview` serves that build.
 
+## Deployment
+
+Pushing to `main` builds and publishes to Cloudflare Pages through `.github/workflows/deploy.yml`.
+
+To publish by hand, for example to check a build before pushing:
+
+```sh
+npm run deploy
 ```
-src/routes/+page.svelte          The whole page — one route
-src/lib/components/Shot.svelte   A screenshot, sized per image
-src/app.css                      All styling; design tokens at the top
-static/media/                    Web-sized video and screenshots
-assets/raw/                      Capture masters (gitignored — large)
-```
 
-## Media
+This needs `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. In CI they come from repository secrets.
 
-`static/media/` is committed and web-sized. The originals it came from are not — the source
-screen recording is 95 MB, so `assets/raw/` is gitignored and kept locally.
+## Notes
 
-The video is re-encoded down to roughly 284 KB:
+- The download button points at `releases/latest/download/Mica.dmg` in the app repo. Publishing a release there updates the download here without a rebuild. Do not commit a `.dmg` to this repo.
+- `static/media/` holds web-sized screenshots and video. The raw captures live in `assets/raw/`, which is gitignored because the source recording is about 95 MB.
+- The demo video was re-encoded to about 284 KB with:
 
 ```sh
 ffmpeg -i raw.mp4 -an -vf "scale=1600:-2,fps=30" \
@@ -40,41 +47,6 @@ ffmpeg -i raw.mp4 -an -vf "scale=1600:-2,fps=30" \
   static/media/reveal.mp4
 ```
 
-Audio is dropped, frame rate halved, and `+faststart` moves the index to the front so it
-begins playing before the file finishes downloading. A VP9/WebM encode was tried and came
-out *larger* than the H.264, so it isn't shipped.
-
-Screenshots are cropped from full-screen captures and displayed at roughly the size the
-interface really is — a menu bar panel stretched across a wide column reads as an
-enlargement rather than a screenshot.
-
-## Deploying
-
-Pushing to `main` builds and publishes automatically. There's no manual step.
-
-To publish by hand — useful for checking a build before pushing:
-
-```sh
-npm run deploy
-```
-
-This needs `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` as repository secrets. They
-are already configured; values are not in this repo.
-
-## The download button
-
-It points at a URL that GitHub resolves to the newest published release:
-
-```
-https://github.com/Vedant-29/mica/releases/latest/download/Mica.dmg
-```
-
-**Cutting a release in the app repo is all that is needed to update the download here.**
-This site isn't rebuilt or redeployed, and no version number is written into it.
-
-Don't commit a `.dmg` to this repo. One used to live in `static/`, which meant the download
-served whatever binary had last been copied in by hand, traceable to no particular build.
-
 ## License
 
-MIT — see [LICENSE](../mica/LICENSE) in the app repo.
+MIT. See the [LICENSE](https://github.com/Vedant-29/mica/blob/main/LICENSE) in the app repo.
